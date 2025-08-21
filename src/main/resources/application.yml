@@ -23,7 +23,8 @@ spring:
       host: ${REDIS_DATASOURCE_HOST}
       port: ${REDIS_DATASOURCE_PORT:6380}
       password: ${REDIS_DATASOURCE_PASSWORD}
-      ssl: true
+      ssl:
+        enabled: true 
 
 server:
   port: 8080
