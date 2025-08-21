@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.kt-giga-fms'
 version = '0.0.1-SNAPSHOT'
-description = 'user-service in kt-giga-fms'
+description = 'car-tracking-service in kt-giga-fms'
 
 java {
 	toolchain {
@@ -24,12 +24,30 @@ repositories {
 	mavenCentral()
 }
 
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories { mavenCentral() }
+
+    dependencies {
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'org.flywaydb:flyway-database-postgresql'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
